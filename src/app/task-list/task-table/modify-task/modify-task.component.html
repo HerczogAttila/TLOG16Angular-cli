@@ -1,0 +1,25 @@
+<p>{{ 'Selected task' | translate }}: {{selectedTask.taskId}}</p>
+
+<table>
+  <tr>
+    <td class="right"><label for="taskId">{{ 'Task id' | translate }}:</label></td>
+    <td><input type="text" id="taskId" [(ngModel)]="newTaskId"></td>
+  </tr>
+  <tr>
+    <td class="right"><label for="comment">{{ 'Comment' | translate }}:</label></td>
+    <td><input type="text" id="comment" [(ngModel)]="newComment"></td>
+  </tr>
+  <tr>
+    <td class="right"><label for="startTime">{{ 'Start time' | translate }}:</label></td>
+    <td><input type="text" id="startTime" [(ngModel)]="newStartTime"></td>
+  </tr>
+  <tr>
+    <td class="right"><label for="endTime">{{ 'End time' | translate }}:</label></td>
+    <td><input type="text" id="endTime" [(ngModel)]="newEndTime"></td>
+    <td><span data-toggle="tooltip" title="{{ 'Auto completion' | translate }}" class="glyphicon glyphicon-time"
+              (click)="setEndTime()"></span></td>
+  </tr>
+  <tr>
+    <td class="right" colspan="2"><button (click)="modifyTask()">{{ 'Modify' | translate }}</button></td>
+  </tr>
+</table>

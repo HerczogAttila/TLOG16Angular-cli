@@ -1,0 +1,18 @@
+<p class="title">{{ 'Calendar' | translate }}</p>
+<div class="month">
+  <app-pager></app-pager>
+</div>
+<table class="header">
+  <tr>
+    <td *ngFor="let day of daysOfWeek | slice:weekService.weekStartIndex:7">{{day | translate}}</td>
+    <td *ngFor="let day of daysOfWeek | slice:0:weekService.weekStartIndex">{{day | translate}}</td>
+  </tr>
+  <tr *ngFor="let week of weekService.getWeeks()">
+    <td class="day" *ngFor="let date of week.days">
+      <app-simple-day *ngIf="date.isSimpleDay()" [date]="date"></app-simple-day>
+      <app-workday *ngIf="date.isWorkDay()" [date]="date"></app-workday>
+    </td>
+  </tr>
+</table>
+<app-monthly-statistic></app-monthly-statistic>
+<!--<button (click)="deleteAll()">Delete all</button>-->
