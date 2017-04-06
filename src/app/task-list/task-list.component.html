@@ -4,7 +4,7 @@
     <label for="actualDay">{{ 'Selected day' | translate }}:</label>
     <select id="actualDay" [(ngModel)]="date" (change)="changeWorkDay()">
       <option *ngFor="let day of days" [ngValue]="day" [selected]="date.date.getDate() === day.date.getDate()">
-        {{day.date | date : 'yyyy. MM. dd.' }}
+        {{ day.date | date : 'yyyy. MM. dd.' }}
       </option>
     </select>
   </div>

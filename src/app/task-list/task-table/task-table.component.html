@@ -1,52 +1,52 @@
 <div class="tasks">
-    <p>{{ 'Tasks' | translate }}:</p>
-    <table>
-        <tr>
-            <th>{{ 'Task id' | translate }}</th>
-            <th>{{ 'Comment' | translate }}</th>
-            <th>{{ 'Start time' | translate }}</th>
-            <th>{{ 'End time' | translate }}</th>
-            <th>{{ 'Length in minutes' | translate }}</th>
-            <th>{{ 'Edit' | translate }}</th>
-        </tr>
-        <tr *ngFor="let task of tasks">
-            <td>{{task.taskId}}</td>
-            <td>{{task.comment}}</td>
-            <td>{{task.startingTime}}</td>
-            <td *ngIf="task.endingTime">{{task.endingTime}}</td>
-            <td *ngIf="!task.endingTime">
+  <p>{{ 'Tasks' | translate }}:</p>
+  <table>
+    <tr>
+      <th>{{ 'Task id' | translate }}</th>
+      <th>{{ 'Comment' | translate }}</th>
+      <th>{{ 'Start time' | translate }}</th>
+      <th>{{ 'End time' | translate }}</th>
+      <th>{{ 'Length in minutes' | translate }}</th>
+      <th>{{ 'Edit' | translate }}</th>
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.taskId }}</td>
+      <td>{{ task.comment }}</td>
+      <td>{{ task.startingTime }}</td>
+      <td *ngIf="task.endingTime">{{ task.endingTime }}</td>
+      <td *ngIf="!task.endingTime">
                 <span data-toggle="tooltip" title="{{ 'Finish' | translate }}" class="glyphicon glyphicon-time"
                       (click)="finishingTask(task)">
 
                 </span></td>
-            <td>{{task.minPerTask}}</td>
-            <td>
+      <td>{{ task.minPerTask }}</td>
+      <td>
                 <span data-toggle="tooltip" title="{{ 'Edit' | translate }}" class="glyphicon glyphicon-pencil"
                       (click)="onSelectTask(task)"></span>
-                <span data-toggle="tooltip" title="{{ 'Delete' | translate }}" class="glyphicon glyphicon-remove"
-                      (click)="onRequestDeleteTask(task)"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="taskId"></label>
-                <input id="taskId" type="text" [(ngModel)]="taskId">
-            </td>
-            <td>
-                <label for="comment"></label>
-                <input id="comment" type="text" [(ngModel)]="comment">
-            </td>
-            <td>
-                <label for="startTime"></label>
-                <input id="startTime" type="text" [(ngModel)]="startTime">
-            </td>
-            <td></td>
-            <td></td>
-            <td><span data-toggle="tooltip" title="{{ 'Add' | translate }}" class="glyphicon glyphicon-plus"
-                      (click)="onCreateTask()"></span></td>
-        </tr>
-    </table>
-    <app-modify-task *ngIf="selectedTask" [(selectedTask)]="selectedTask" [newTaskId]="selectedTask.taskId"
-                    [newComment]="selectedTask.comment" [newStartTime]="selectedTask.startingTime"
-                    [newEndTime]="selectedTask.endingTime" (modify)="onModifyTask($event)"></app-modify-task>
+        <span data-toggle="tooltip" title="{{ 'Delete' | translate }}" class="glyphicon glyphicon-remove"
+              (click)="onRequestDeleteTask(task)"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="taskId"></label>
+        <input id="taskId" type="text" [(ngModel)]="taskId">
+      </td>
+      <td>
+        <label for="comment"></label>
+        <input id="comment" type="text" [(ngModel)]="comment">
+      </td>
+      <td>
+        <label for="startTime"></label>
+        <input id="startTime" type="text" [(ngModel)]="startTime">
+      </td>
+      <td></td>
+      <td></td>
+      <td><span data-toggle="tooltip" title="{{ 'Add' | translate }}" class="glyphicon glyphicon-plus"
+                (click)="onCreateTask()"></span></td>
+    </tr>
+  </table>
+  <app-modify-task *ngIf="selectedTask" [(selectedTask)]="selectedTask" [newTaskId]="selectedTask.taskId"
+                   [newComment]="selectedTask.comment" [newStartTime]="selectedTask.startingTime"
+                   [newEndTime]="selectedTask.endingTime" (modify)="onModifyTask($event)"></app-modify-task>
 </div>

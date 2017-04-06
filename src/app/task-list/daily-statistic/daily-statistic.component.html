@@ -1,17 +1,17 @@
 <div class="container">
-    <p class="statistic">{{ 'Statistics' | translate }}:</p>
-    <p>{{ 'Task count' | translate }}: {{tasks.length}}</p>
+  <p class="statistic">{{ 'Statistics' | translate }}:</p>
+  <p>{{ 'Task count' | translate }}: {{tasks.length}}</p>
 
-    <p class="inline">{{ 'Required working minutes' | translate }}:</p>
-    <p class="inline" *ngIf="!edit">{{date.requiredWorkMinutes}}</p>
-    <span data-toggle="tooltip" title="{{ 'Edit' | translate }}" class="glyphicon glyphicon-pencil"
-          *ngIf="!edit" (click)="onEditRequiredWorkingMinutes()"></span>
-    <div *ngIf="edit" class="inline">
-        <label for="requiredWorkingMinutes"></label>
-        <input id="requiredWorkingMinutes" type="text" [(ngModel)]="requiredWorkingMinutes">
-        <span class="glyphicon glyphicon-ok" (click)="onModifyDay()"></span>
-        <span class="glyphicon glyphicon-remove" (click)="edit = false"></span>
-    </div>
+  <p class="inline">{{ 'Required working minutes' | translate }}:</p>
+  <p class="inline" *ngIf="!edit">{{date.requiredWorkMinutes}}</p>
+  <span data-toggle="tooltip" title="{{ 'Edit' | translate }}" class="glyphicon glyphicon-pencil"
+        *ngIf="!edit" (click)="onEditRequiredWorkingMinutes()"></span>
+  <div *ngIf="edit" class="inline">
+    <label for="requiredWorkingMinutes"></label>
+    <input id="requiredWorkingMinutes" type="text" [(ngModel)]="requiredWorkingMinutes">
+    <span class="glyphicon glyphicon-ok" (click)="onModifyDay()"></span>
+    <span class="glyphicon glyphicon-remove" (click)="edit = false"></span>
+  </div>
 
-    <p class="extraMinutes">{{ 'Extra minutes' | translate }}: {{date.extraMinutes}}</p>
+  <p class="extraMinutes">{{ 'Extra minutes' | translate }}: {{date.extraMinutes}}</p>
 </div>
