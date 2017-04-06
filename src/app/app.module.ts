@@ -24,10 +24,9 @@ import { NetworkService } from './shared/services/network.service';
 import { PagerService } from './shared/services/pager.service';
 import { WeekService } from './shared/services/week.service';
 import { TranslateLoader, TranslateModule, TranslateStaticLoader } from 'ng2-translate';
-import { AlertModule } from 'ng2-bootstrap';
 
 export function translateFactory(http: Http): TranslateStaticLoader {
-  return new TranslateStaticLoader(http, './translations/', '.json');
+  return new TranslateStaticLoader(http, 'assets/translations', '.json');
 }
 
 @NgModule({
@@ -58,7 +57,6 @@ export function translateFactory(http: Http): TranslateStaticLoader {
     FormsModule,
     HttpModule,
     routes,
-    AlertModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: translateFactory,
