@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { DeleteTaskRB } from '../classes/backend/deleteTaskRB';
 import { ModifyTaskRB } from '../classes/backend/modifyTaskRB';
 import { FinishingTaskRB } from '../classes/backend/finishingTaskRB';

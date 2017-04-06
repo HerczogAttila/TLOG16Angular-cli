@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { WeekService } from './week.service';
 import { MyDate } from '../classes/myDate';
 import { WorkDay } from '../classes/backend/workDay';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { NetworkService } from './network.service';
 
 const DAYS_IN_WEEK = 7;
