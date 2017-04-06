@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { LoginService } from './shared/services/login.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['app.component.css'],
 })
 export class AppComponent {
-  public title = 'Time logger angular webpack';
+  public title = 'Time logger angular cli';
 
   constructor(
     private translate: TranslateService,
@@ -17,9 +18,7 @@ export class AppComponent {
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use(navigator.language.split('-')[0]);
-
-    this.refreshToken();
-    Observable.interval(240000)
+    Observable.timer(0, 240000)
       .subscribe(() => {
         this.refreshToken();
       });
