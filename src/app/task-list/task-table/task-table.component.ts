@@ -26,8 +26,8 @@ export class TaskTableComponent {
     private requestDeleteTask: Task;
 
     public static nextQuarterHour(task: Task): string {
-        let startDate = TaskTableComponent.getDateFromTimeString(task.startingTime);
-        let endDate = new Date();
+        const startDate = TaskTableComponent.getDateFromTimeString(task.startingTime);
+        const endDate = new Date();
         let minutes = (endDate.getTime() - startDate.getTime()) / 60000;
         minutes -= minutes % 15 - 15;
         if (minutes < 15) {
@@ -40,8 +40,8 @@ export class TaskTableComponent {
     }
 
     private static getDateFromTimeString(time: string): Date {
-        let date = new Date();
-        let split = time.split(':');
+        const date = new Date();
+        const split = time.split(':');
         date.setHours(+split[0]);
         date.setMinutes(+split[1]);
 
@@ -67,7 +67,7 @@ export class TaskTableComponent {
     ) {}
 
     public onCreateTask(): void {
-        let startTask = new StartTaskRB(this.weekService.getSelectedDay(), this.taskId, this.comment, this.startTime);
+        const startTask = new StartTaskRB(this.weekService.getSelectedDay(), this.taskId, this.comment, this.startTime);
         this.networkService.startTask(startTask)
             .subscribe(
                 () => {
@@ -99,7 +99,7 @@ export class TaskTableComponent {
             this.selectedTask = null;
         }
 
-        let deleteTask = new DeleteTaskRB(this.weekService.getSelectedDay(), this.requestDeleteTask);
+        const deleteTask = new DeleteTaskRB(this.weekService.getSelectedDay(), this.requestDeleteTask);
         this.networkService.deleteTask(deleteTask)
             .subscribe(() => this.refresh.emit());
     }
@@ -108,9 +108,9 @@ export class TaskTableComponent {
         if (!task || !task.startingTime) {
             return;
         }
-        let endTime = TaskTableComponent.nextQuarterHour(task);
+        const endTime = TaskTableComponent.nextQuarterHour(task);
 
-        let finishingTask = FinishingTaskRB.create(this.weekService.getSelectedDay(), task, endTime);
+        const finishingTask = FinishingTaskRB.create(this.weekService.getSelectedDay(), task, endTime);
         this.networkService.finishingTask(finishingTask)
             .subscribe(
                 () => {

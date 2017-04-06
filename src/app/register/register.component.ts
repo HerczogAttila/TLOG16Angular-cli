@@ -40,7 +40,7 @@ export class RegisterComponent {
             return;
         }
 
-        let user = new UserRB(this.userName, this.password);
+        const user = new UserRB(this.userName, this.password);
         this.networkService.registering(user)
             .subscribe(
                 () => {

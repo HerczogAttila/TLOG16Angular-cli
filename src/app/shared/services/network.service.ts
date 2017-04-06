@@ -30,7 +30,7 @@ export class NetworkService {
     private urlExistUser = this.urlBase + 'isExistUser';
 
     private urlGetMonths = this.urlBase + 'workmonths/';
-    private urlDeleteAll = this.urlBase + 'workmonths/deleteall';
+    // private urlDeleteAll = this.urlBase + 'workmonths/deleteall';
 
     private urlAddWorkDay = this.urlBase + 'workmonths/workdays';
     private urlAddWorkDayWeekend = this.urlBase + 'workmonths/workdaysweekend';
@@ -43,70 +43,70 @@ export class NetworkService {
     private urlDeleteTask = this.urlBase + 'workmonths/workdays/tasks/delete';
 
     private static extractDataText(response: Response): string {
-        return response.text();
+      return response.text();
     }
 
     private static extractDataJson(response: Response) {
-        return JSON.parse(response.text());
+      return JSON.parse(response.text());
     }
 
     constructor (private http: Http) {}
 
     public refreshHeader(): void {
-        this.headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('jwtToken') });
-        this.options = new RequestOptions({ headers: this.headers });
+      this.headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('jwtToken') });
+      this.options = new RequestOptions({ headers: this.headers });
     }
 
     public registering(user: UserRB): Observable<Response> {
-        return this.http.post(this.urlRegistering, JSON.stringify(user), this.options);
+      return this.http.post(this.urlRegistering, JSON.stringify(user), this.options);
     }
     public authenticate(user: UserRB): Observable<string> {
-        return this.http.post(this.urlAuthenticate, JSON.stringify(user), this.options)
-            .map(NetworkService.extractDataText);
+      return this.http.post(this.urlAuthenticate, JSON.stringify(user), this.options)
+        .map(NetworkService.extractDataText);
     }
     public refresh(): Observable<string> {
-        return this.http.post(this.urlRefresh, {}, this.options)
-            .map(NetworkService.extractDataText);
+      return this.http.post(this.urlRefresh, {}, this.options)
+        .map(NetworkService.extractDataText);
     }
     public isExistUserName(userName: string): Observable<Response> {
-        return this.http.post(this.urlExistUser, userName, this.options);
+      return this.http.post(this.urlExistUser, userName, this.options);
     }
 
     public getMonthWorkDays(date: Date): Observable<WorkDay[]> {
-        return this.http.get(this.urlGetMonths + date.getFullYear() + '/' + (date.getMonth() + 1), this.options)
-            .map(NetworkService.extractDataJson);
+      return this.http.get(this.urlGetMonths + date.getFullYear() + '/' + (date.getMonth() + 1), this.options)
+        .map(NetworkService.extractDataJson);
     }
 
     public addWorkDay(workDay: WorkDayRB): Observable<WorkDay> {
-        return this.http.post(this.urlAddWorkDay, JSON.stringify(workDay), this.options)
-            .map(NetworkService.extractDataJson);
+      return this.http.post(this.urlAddWorkDay, JSON.stringify(workDay), this.options)
+        .map(NetworkService.extractDataJson);
     }
     public addWorkDayWeekend(workDay: WorkDayRB): Observable<WorkDay> {
-        return this.http.post(this.urlAddWorkDayWeekend, JSON.stringify(workDay), this.options)
-            .map(NetworkService.extractDataJson);
+      return this.http.post(this.urlAddWorkDayWeekend, JSON.stringify(workDay), this.options)
+        .map(NetworkService.extractDataJson);
     }
     public getWorkDay(date: MyDate): Observable<WorkDay> {
-        return this.http.get(this.urlGetWorkDay + date.getYear() + '/' + date.getMonth() + '/' + date.getDay(), this.options)
-            .map(NetworkService.extractDataJson);
+      return this.http.get(this.urlGetWorkDay + date.getYear() + '/' + date.getMonth() + '/' + date.getDay(), this.options)
+        .map(NetworkService.extractDataJson);
     }
     public modifyWorkDay(modifyWorkDay: ModifyWorkDayRB): Observable<WorkDay> {
-        return this.http.put(this.urlModifyWorkDay, JSON.stringify(modifyWorkDay), this.options)
-            .map(NetworkService.extractDataJson);
+      return this.http.put(this.urlModifyWorkDay, JSON.stringify(modifyWorkDay), this.options)
+        .map(NetworkService.extractDataJson);
     }
     public startTask(startTask: StartTaskRB): Observable<Response> {
-        return this.http.post(this.urlStartTask, JSON.stringify(startTask), this.options);
+      return this.http.post(this.urlStartTask, JSON.stringify(startTask), this.options);
     }
     public finishingTask(finishingTask: FinishingTaskRB): Observable<Response> {
-        return this.http.put(this.urlFinishingTask, JSON.stringify(finishingTask), this.options);
+      return this.http.put(this.urlFinishingTask, JSON.stringify(finishingTask), this.options);
     }
     public modifyTask(modifyTask: ModifyTaskRB): Observable<Response> {
-        return this.http.put(this.urlModifyTask, JSON.stringify(modifyTask), this.options);
+      return this.http.put(this.urlModifyTask, JSON.stringify(modifyTask), this.options);
     }
     public deleteTask(deleteTask: DeleteTaskRB): Observable<Response> {
-        return this.http.put(this.urlDeleteTask, JSON.stringify(deleteTask), this.options);
+      return this.http.put(this.urlDeleteTask, JSON.stringify(deleteTask), this.options);
     }
 
-    public deleteAll(): Observable<Response> {
-        return this.http.put(this.urlDeleteAll, { }, this.options);
-    }
+    // public deleteAll(): Observable<Response> {
+    //     return this.http.put(this.urlDeleteAll, { }, this.options);
+    // }
 }

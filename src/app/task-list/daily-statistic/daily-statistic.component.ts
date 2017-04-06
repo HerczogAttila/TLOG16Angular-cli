@@ -28,7 +28,7 @@ export class DailyStatisticComponent {
     }
 
     public onModifyDay(): void {
-        let modifyWorkDay = new ModifyWorkDayRB(this.date, this.requiredWorkingMinutes);
+        const modifyWorkDay = new ModifyWorkDayRB(this.date, this.requiredWorkingMinutes);
         this.networkService.modifyWorkDay(modifyWorkDay)
             .subscribe(
                 () => this.refresh.emit(),

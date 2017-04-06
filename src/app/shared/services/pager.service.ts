@@ -12,75 +12,71 @@ export class PagerService {
     public date: Date;
 
     constructor(
-        private weekService: WeekService,
-        private networkService: NetworkService,
+      private weekService: WeekService,
+      private networkService: NetworkService,
     ) { }
 
     public init(): void {
-        if (this.weekService.getWeeks().length === 0) {
-            this.date = new Date();
-            this.refresh();
-        }
+      if (this.weekService.getWeeks().length === 0) {
+        this.date = new Date();
+        this.refresh();
+      }
     }
 
     public previousMonth(): void {
-        this.date = new Date(this.date.getFullYear(), this.date.getMonth() - 1, 1);
-        this.refresh();
+      this.date = new Date(this.date.getFullYear(), this.date.getMonth() - 1, 1);
+      this.refresh();
     }
 
     public nextMonth(): void {
-        this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1);
-        this.refresh();
+      this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1);
+      this.refresh();
     }
 
     public refresh(): Observable<WorkDay[]> {
-        let workDays = this.networkService.getMonthWorkDays(this.date);
-        workDays.subscribe(days => this.createDays(days));
+      const workDays = this.networkService.getMonthWorkDays(this.date);
+      workDays.subscribe((days: WorkDay[]) => {
+        this.createDays(days);
+      });
 
-        return workDays;
+      return workDays;
     }
 
     private createDays(workdays: WorkDay[]): void {
-        this.weekService.clear();
-        this.createEmptyDays();
+      this.weekService.clear();
+      this.createEmptyDays();
 
-        let dayCount = this.getMonthDayCount();
-        for (let i = 1; i <= dayCount; i++) {
-            this.weekService.addDay(this.createDay(workdays, i));
-        }
+      const dayCount = this.getMonthDayCount();
+      for (let i = 1; i <= dayCount; i++) {
+        this.weekService.addDay(this.createDay(workdays, i));
+      }
 
-        this.weekService.fillWeek();
+      this.weekService.fillWeek();
 
-        this.weekService.refreshStatistics();
+      this.weekService.refreshStatistics();
     }
 
     private createEmptyDays(): void {
-        let firstDay = new Date(this.date.getFullYear(), this.date.getMonth());
-        let startingDay = (firstDay.getDay() - this.weekService.weekStartIndex + DAYS_IN_WEEK) % DAYS_IN_WEEK;
+      const firstDay = new Date(this.date.getFullYear(), this.date.getMonth());
+      const startingDay = (firstDay.getDay() - this.weekService.weekStartIndex + DAYS_IN_WEEK) % DAYS_IN_WEEK;
 
-        for (let i = 0; i < startingDay; i++) {
-            this.weekService.addDay(new MyDate());
-        }
+      for (let i = 0; i < startingDay; i++) {
+        this.weekService.addDay(new MyDate());
+      }
     }
 
     private getMonthDayCount(): number {
-        return new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+      return new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
     }
 
     private createDay(days: WorkDay[], dayOfMonth: number): MyDate {
-        let now = new Date(this.date.getFullYear(), this.date.getMonth(), dayOfMonth);
-        for (let day of days) {
-            let x = new WorkDay();
-            x.date = day.date;
-
-            // console.log(x);
-            // console.log(day);
-
-            if (x.getDayOfMonth() === dayOfMonth) {
-                return MyDate.workDay(now, day);
-            }
+      const now = new Date(this.date.getFullYear(), this.date.getMonth(), dayOfMonth);
+      for (const day of days) {
+        if (day.dayOfMonth === dayOfMonth) {
+          return MyDate.workDay(now, day);
         }
+      }
 
-        return MyDate.simpleDay(now);
+      return MyDate.simpleDay(now);
     }
 }

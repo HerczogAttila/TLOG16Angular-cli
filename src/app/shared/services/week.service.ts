@@ -23,8 +23,8 @@ export class WeekService {
         this.minutes = 0;
         this.extraMinutes = 0;
         this.workdaysCount = this.workDays.length;
-        for (let w of this.weeks) {
-            for (let d of w.days) {
+        for (const w of this.weeks) {
+            for (const d of w.days) {
                 this.reqWorkMinutes += d.requiredWorkMinutes;
                 this.minutes += d.minutes;
                 this.extraMinutes += d.extraMinutes;
@@ -46,7 +46,7 @@ export class WeekService {
 
     public setSelectedDayIfExist(date: MyDate): boolean {
         let i = 0;
-        for (let day of this.workDays) {
+        for (const day of this.workDays) {
             if (date.date.getDate() === day.date.getDate()) {
                 this.selectedDay = i;
                 return true;
@@ -63,7 +63,7 @@ export class WeekService {
     }
 
     public fillWeek(): void {
-        let week = this.lastWeek();
+        const week = this.lastWeek();
         if (week) {
             while (!week.isFull()) {
                 week.days.push(new MyDate());

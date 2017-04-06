@@ -29,7 +29,7 @@ export class SimpleDayComponent {
   ) { }
 
   public onNewWorkday(): void {
-    let workDay = new WorkDayRB(this.date, 450);
+    const workDay = new WorkDayRB(this.date, 450);
 
     if (this.date.isWeekend()) {
       ConfirmModalComponent.show('Are you sure working on weekend?',

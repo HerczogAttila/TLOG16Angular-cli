@@ -25,7 +25,7 @@ export class LoginComponent {
             return;
         }
 
-        let user = new UserRB(this.userName, this.password);
+        const user = new UserRB(this.userName, this.password);
         this.loginService.logInRequest(user);
     }
 }
