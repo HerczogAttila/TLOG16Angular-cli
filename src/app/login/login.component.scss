@@ -1,13 +1,29 @@
 
-td {
+div {
+  margin-top: 10px;
+}
+
+label {
   padding: 5px;
 }
 
-table {
-  margin: auto;
-  text-align: center;
+span {
+  margin: 5px;
 }
 
-.right {
-  text-align: right;
+button {
+  border-radius: 40px;
+  border: 5px solid transparent;
+  background: #AED6D1;
+  transition:
+    all 1.2s,
+    border 0.5s 1.2s,
+    margin-top 0.5s 1.2s;
+  &:hover {
+    color: #FFE8A3;
+    margin-top: -5px;
+    border: 10px solid #8DCCC4;
+    background: #55706D;
+    padding: 10px 50px;
+  }
 }

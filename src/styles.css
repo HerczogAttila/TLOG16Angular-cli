@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+.title {
+  font-size: x-large;
+  padding: 10px;
+  text-align: center;
+}
