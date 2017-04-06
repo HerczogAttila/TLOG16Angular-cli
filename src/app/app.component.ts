@@ -9,6 +9,7 @@ import 'rxjs/add/observable/timer';
   templateUrl: './app.component.html',
   styleUrls: ['app.component.css'],
 })
+
 export class AppComponent {
   public title = 'Time logger angular cli';
 

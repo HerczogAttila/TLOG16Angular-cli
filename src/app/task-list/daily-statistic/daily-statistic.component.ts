@@ -6,39 +6,39 @@ import { ErrorModalComponent } from '../../modals/error-modal/error-modal.compon
 import { NetworkService, STATUS_CODE_NOT_MODIFIED } from '../../shared/services/network.service';
 
 @Component({
-    selector: 'app-daily-statistic',
-    templateUrl: 'daily-statistic.component.html',
-    styleUrls: ['daily-statistic.component.scss'],
+  selector: 'app-daily-statistic',
+  templateUrl: 'daily-statistic.component.html',
+  styleUrls: ['daily-statistic.component.scss'],
 })
 
 export class DailyStatisticComponent {
-    @Input() public date: MyDate;
-    @Input() public tasks: Task[];
-    @Output() public refresh = new EventEmitter();
+  @Input() public date: MyDate;
+  @Input() public tasks: Task[];
+  @Output() public refresh = new EventEmitter();
 
-    public edit = false;
+  public edit = false;
 
-    public requiredWorkingMinutes: number;
+  public requiredWorkingMinutes: number;
 
-    constructor(private networkService: NetworkService) {}
+  constructor(private networkService: NetworkService) {}
 
-    public onEditRequiredWorkingMinutes() {
-        this.edit = true;
-        this.requiredWorkingMinutes = this.date.requiredWorkMinutes;
-    }
+  public onEditRequiredWorkingMinutes() {
+    this.edit = true;
+    this.requiredWorkingMinutes = this.date.requiredWorkMinutes;
+  }
 
-    public onModifyDay(): void {
-        const modifyWorkDay = new ModifyWorkDayRB(this.date, this.requiredWorkingMinutes);
-        this.networkService.modifyWorkDay(modifyWorkDay)
-            .subscribe(
-                () => this.refresh.emit(),
-                (error) => {
-                    if (error.status === STATUS_CODE_NOT_MODIFIED) {
-                        ErrorModalComponent.show('Invalid data');
-                    }
-                }
-            );
+  public onModifyDay(): void {
+    const modifyWorkDay = new ModifyWorkDayRB(this.date, this.requiredWorkingMinutes);
+    this.networkService.modifyWorkDay(modifyWorkDay)
+      .subscribe(
+        () => this.refresh.emit(),
+        (error) => {
+          if (error.status === STATUS_CODE_NOT_MODIFIED) {
+            ErrorModalComponent.show('Invalid data');
+          }
+        }
+      );
 
-        this.edit = false;
-    }
+    this.edit = false;
+  }
 }

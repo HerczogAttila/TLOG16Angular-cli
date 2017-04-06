@@ -4,28 +4,28 @@ import { ErrorModalComponent } from '../modals/error-modal/error-modal.component
 import { LoginService } from '../shared/services/login.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: 'login.component.html',
-    styleUrls: ['login.component.scss'],
+  selector: 'app-login',
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.scss'],
 })
 
 export class LoginComponent {
-    public userName: string;
-    public password: string;
+  public userName: string;
+  public password: string;
 
-    constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService) {}
 
-    public onLogin(): void {
-        if (!this.userName) {
-            ErrorModalComponent.show('Missing user name!');
-            return;
-        }
-        if (!this.password) {
-            ErrorModalComponent.show('Missing password!');
-            return;
-        }
-
-        const user = new UserRB(this.userName, this.password);
-        this.loginService.logInRequest(user);
+  public onLogin(): void {
+    if (!this.userName) {
+      ErrorModalComponent.show('Missing user name!');
+      return;
     }
+    if (!this.password) {
+      ErrorModalComponent.show('Missing password!');
+      return;
+    }
+
+    const user = new UserRB(this.userName, this.password);
+    this.loginService.logInRequest(user);
+  }
 }

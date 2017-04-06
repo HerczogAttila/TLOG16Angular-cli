@@ -13,8 +13,8 @@ export class WorkdayComponent {
   @Input() public date: MyDate;
 
   constructor(
-      private router: Router,
-      private weekService: WeekService,
+    private router: Router,
+    private weekService: WeekService,
   ) { }
 
   public navigateTaskList(): void {

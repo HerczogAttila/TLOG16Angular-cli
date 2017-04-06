@@ -9,68 +9,68 @@ const MISSING_USER = 'Missing user name!';
 const MISSING_PASSWORD = 'Missing password!';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: 'register.component.html',
-    styleUrls: [
-        '../login/login.component.scss',
-        'register.component.scss'
-    ],
+  selector: 'app-register',
+  templateUrl: 'register.component.html',
+  styleUrls: [
+    '../login/login.component.scss',
+    'register.component.scss'
+  ],
 })
 
 export class RegisterComponent {
-    public userName: string;
-    public password: string;
+  public userName: string;
+  public password: string;
 
-    public isExistUser = false;
-    public errorMessage: string;
+  public isExistUser = false;
+  public errorMessage: string;
 
-    constructor(
-        private networkService: NetworkService,
-        private loginService: LoginService,
-    ) {}
+  constructor(
+    private networkService: NetworkService,
+    private loginService: LoginService,
+  ) {}
 
-    public onRegister(): void {
-        if (!this.userName) {
-            ErrorModalComponent.show(MISSING_USER);
-            return;
-        }
-
-        if (!this.password) {
-            ErrorModalComponent.show(MISSING_PASSWORD);
-            return;
-        }
-
-        const user = new UserRB(this.userName, this.password);
-        this.networkService.registering(user)
-            .subscribe(
-                () => {
-                    this.loginService.logInRequest(user);
-                },
-                (error) => {
-                    if (error.status === STATUS_CODE_NOT_MODIFIED) {
-                        ErrorModalComponent.show(EXIST_USER);
-                    }
-                }
-            );
+  public onRegister(): void {
+    if (!this.userName) {
+      ErrorModalComponent.show(MISSING_USER);
+      return;
     }
 
-    public onUserNameChanged(): void {
-        if (!this.userName) {
-            this.errorMessage = MISSING_USER;
-            return;
-        }
-
-        this.networkService.isExistUserName(this.userName)
-            .map(res => res)
-            .subscribe(
-                () => {
-                    this.errorMessage = '';
-                },
-                (error) => {
-                    if (error.status === STATUS_CODE_NOT_MODIFIED) {
-                        this.errorMessage = EXIST_USER;
-                    }
-                }
-            );
+    if (!this.password) {
+      ErrorModalComponent.show(MISSING_PASSWORD);
+      return;
     }
+
+    const user = new UserRB(this.userName, this.password);
+    this.networkService.registering(user)
+      .subscribe(
+        () => {
+          this.loginService.logInRequest(user);
+        },
+        (error) => {
+          if (error.status === STATUS_CODE_NOT_MODIFIED) {
+            ErrorModalComponent.show(EXIST_USER);
+          }
+        }
+      );
+  }
+
+  public onUserNameChanged(): void {
+    if (!this.userName) {
+      this.errorMessage = MISSING_USER;
+      return;
+    }
+
+    this.networkService.isExistUserName(this.userName)
+      .map(res => res)
+      .subscribe(
+        () => {
+          this.errorMessage = '';
+        },
+        (error) => {
+          if (error.status === STATUS_CODE_NOT_MODIFIED) {
+            this.errorMessage = EXIST_USER;
+          }
+        }
+      );
+  }
 }

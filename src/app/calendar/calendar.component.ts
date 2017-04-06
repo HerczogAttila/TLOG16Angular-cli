@@ -13,9 +13,9 @@ export class CalendarComponent implements OnInit {
   public daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor(
-      public weekService: WeekService,
-      // private networkService: NetworkService,
-      private pagerService: PagerService,
+    public weekService: WeekService,
+    // private networkService: NetworkService,
+    private pagerService: PagerService,
   ) { }
 
   public ngOnInit(): void {
@@ -24,6 +24,6 @@ export class CalendarComponent implements OnInit {
 
   // public deleteAll(): void {
   //   this.networkService.deleteAll()
-  //       .subscribe(() => this.pagerService.refresh());
+  //     .subscribe(() => this.pagerService.refresh());
   // }
 }

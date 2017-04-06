@@ -18,22 +18,20 @@ export class TaskListComponent implements OnInit {
   public tasks: Task[] = [];
   public days: MyDate[] = [];
 
-  public taskId: string;
-
   constructor(
-      private weekService: WeekService,
-      private pagerService: PagerService,
-      private networkService: NetworkService,
+    private weekService: WeekService,
+    private pagerService: PagerService,
+    private networkService: NetworkService,
   ) { }
 
   public ngOnInit(): void {
     this.pagerService.init();
     this.pagerService.refresh()
-        .subscribe(() => {
-          this.date = this.weekService.getSelectedDay();
-          this.days = this.weekService.getDays();
-          this.refreshWorkDay();
-        });
+      .subscribe(() => {
+        this.date = this.weekService.getSelectedDay();
+        this.days = this.weekService.getDays();
+        this.refreshWorkDay();
+      });
   }
 
   public changeWorkDay(): void {
@@ -44,11 +42,11 @@ export class TaskListComponent implements OnInit {
   public refreshWorkDay(): void {
     if (this.date) {
       this.networkService.getWorkDay(this.date)
-          .subscribe(
-              workDay => {
-                this.readWorkDay(workDay);
-              }
-          );
+        .subscribe(
+          workDay => {
+            this.readWorkDay(workDay);
+          }
+        );
     }
   }
 

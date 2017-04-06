@@ -24,8 +24,8 @@ export class SimpleDayComponent {
   }
 
   constructor(
-      private pagerService: PagerService,
-      private networkService: NetworkService
+    private pagerService: PagerService,
+    private networkService: NetworkService
   ) { }
 
   public onNewWorkday(): void {
@@ -33,7 +33,7 @@ export class SimpleDayComponent {
 
     if (this.date.isWeekend()) {
       ConfirmModalComponent.show('Are you sure working on weekend?',
-          () => this.addWorkDayWeekend(workDay));
+        () => this.addWorkDayWeekend(workDay));
     } else {
       this.addWorkDay(workDay);
     }
@@ -45,18 +45,18 @@ export class SimpleDayComponent {
 
   public addWorkDayWeekend(workDay: WorkDayRB): void {
     this.networkService.addWorkDayWeekend(workDay)
-        .subscribe(
-            day => this.responseNewWorkDay(day),
-            error => SimpleDayComponent.errorNewWorkDay(error)
-        );
+      .subscribe(
+        day => this.responseNewWorkDay(day),
+        error => SimpleDayComponent.errorNewWorkDay(error)
+      );
   }
 
   private addWorkDay(workDay: WorkDayRB): void {
     this.networkService.addWorkDay(workDay)
-        .subscribe(
-            day => this.responseNewWorkDay(day),
-            error => SimpleDayComponent.errorNewWorkDay(error)
-        );
+      .subscribe(
+        day => this.responseNewWorkDay(day),
+        error => SimpleDayComponent.errorNewWorkDay(error)
+      );
   }
 
   private responseNewWorkDay(workDay: WorkDay): void {
