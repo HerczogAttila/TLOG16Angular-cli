@@ -29,16 +29,13 @@
     </tr>
     <tr>
       <td>
-        <label for="taskId"></label>
-        <input id="taskId" type="text" [(ngModel)]="taskId">
+        <input placeholder="{{ 'Task id' | translate }}" type="text" [(ngModel)]="taskId">
       </td>
       <td>
-        <label for="comment"></label>
-        <input id="comment" type="text" [(ngModel)]="comment">
+        <input placeholder="{{ 'Comment' | translate }}" type="text" [(ngModel)]="comment">
       </td>
       <td>
-        <label for="startTime"></label>
-        <input id="startTime" type="text" [(ngModel)]="startTime">
+        <input placeholder="{{ 'Start time' | translate }}" type="text" [(ngModel)]="startTime">
       </td>
       <td></td>
       <td></td>

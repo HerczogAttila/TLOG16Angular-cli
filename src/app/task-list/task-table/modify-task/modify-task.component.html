@@ -3,19 +3,19 @@
 <table>
   <tr>
     <td class="right"><label for="taskId">{{ 'Task id' | translate }}:</label></td>
-    <td><input type="text" id="taskId" [(ngModel)]="newTaskId"></td>
+    <td><input type="text" id="taskId" placeholder="{{ 'Task id' | translate }}" [(ngModel)]="newTaskId"></td>
   </tr>
   <tr>
     <td class="right"><label for="comment">{{ 'Comment' | translate }}:</label></td>
-    <td><input type="text" id="comment" [(ngModel)]="newComment"></td>
+    <td><input type="text" id="comment" placeholder="{{ 'Comment' | translate }}" [(ngModel)]="newComment"></td>
   </tr>
   <tr>
     <td class="right"><label for="startTime">{{ 'Start time' | translate }}:</label></td>
-    <td><input type="text" id="startTime" [(ngModel)]="newStartTime"></td>
+    <td><input type="text" id="startTime" placeholder="{{ 'Start time' | translate }}" [(ngModel)]="newStartTime"></td>
   </tr>
   <tr>
     <td class="right"><label for="endTime">{{ 'End time' | translate }}:</label></td>
-    <td><input type="text" id="endTime" [(ngModel)]="newEndTime"></td>
+    <td><input type="text" id="endTime" placeholder="{{ 'End time' | translate }}" [(ngModel)]="newEndTime"></td>
     <td><span data-toggle="tooltip" title="{{ 'Auto completion' | translate }}" class="glyphicon glyphicon-time"
               (click)="setEndTime()"></span></td>
   </tr>
