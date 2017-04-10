@@ -5,19 +5,13 @@
     <input type="text" placeholder="{{ 'Username' | translate }}" [(ngModel)]="userName"
            (keyup)="onUserNameChanged()">
   </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-sm-offset-5 text-center">
     <span class="glyphicon glyphicon-lock"></span>
     <input type="password" placeholder="{{ 'Password' | translate }}" [(ngModel)]="password">
   </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-sm-offset-5 text-center">
     <button (click)="onRegister()">{{ 'Register' | translate }}</button>
   </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-sm-offset-5 text-center">
     <div *ngIf="errorMessage" class="alert alert-danger alert-dismissable fade in">
       <p>{{ errorMessage | translate }}</p>

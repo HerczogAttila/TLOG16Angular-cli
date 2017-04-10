@@ -4,14 +4,10 @@
     <span class="glyphicon glyphicon-user"></span>
     <input type="text" placeholder="{{ 'Username' | translate }}" [(ngModel)]="userName">
   </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-sm-offset-5 text-center">
     <span class="glyphicon glyphicon-lock"></span>
     <input type="password" placeholder="{{ 'Password' | translate }}" [(ngModel)]="password">
   </div>
-</div>
-<div class="row">
   <div class="col-sm-2 col-sm-offset-5 text-center">
     <button (click)="onLogin()">{{ 'Login' | translate }}</button>
   </div>

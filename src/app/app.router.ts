@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-
 import { TaskListComponent } from './task-list/task-list.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LoginComponent } from './login/login.component';
