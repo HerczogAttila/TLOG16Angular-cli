@@ -13,12 +13,12 @@
       <td>{{ task.taskId }}</td>
       <td>{{ task.comment }}</td>
       <td>{{ task.startingTime }}</td>
-      <td *ngIf="task.endingTime">{{ task.endingTime }}</td>
-      <td *ngIf="!task.endingTime">
-                <span data-toggle="tooltip" title="{{ 'Finish' | translate }}" class="glyphicon glyphicon-time"
-                      (click)="finishingTask(task)">
-
-                </span></td>
+      <td>
+        <p class="inline" *ngIf="task.endingTime">{{ task.endingTime }}</p>
+        <span *ngIf="!task.endingTime || task === tasks[tasks.length - 1]" data-toggle="tooltip"
+              title="{{ 'Finish' | translate }}" class="glyphicon glyphicon-time" (click)="finishingTask(task)">
+        </span>
+      </td>
       <td>{{ task.minPerTask }}</td>
       <td>
                 <span data-toggle="tooltip" title="{{ 'Edit' | translate }}" class="glyphicon glyphicon-pencil"
