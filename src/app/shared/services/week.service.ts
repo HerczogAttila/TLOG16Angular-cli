@@ -51,8 +51,6 @@ export class WeekService {
     this.chartData = [];
     this.chartData.push({ data: chartMinutes, label: 'Work minutes'});
     this.chartData.push({ data: chartRequiredWorkMinutes, label: 'Required work minutes'});
-    console.log(this.chartData);
-    console.log(this.chartLabels);
   }
 
   public getDays(): MyDate[] {
