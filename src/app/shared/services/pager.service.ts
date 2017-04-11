@@ -42,6 +42,10 @@ export class PagerService {
     return workDays;
   }
 
+  public getMonthDayCount(): number {
+    return new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+  }
+
   private createDays(workdays: WorkDay[]): void {
     this.weekService.clear();
     this.createEmptyDays();
@@ -63,10 +67,6 @@ export class PagerService {
     for (let i = 0; i < startingDay; i++) {
       this.weekService.addDay(new MyDate());
     }
-  }
-
-  private getMonthDayCount(): number {
-    return new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
   }
 
   private createDay(days: WorkDay[], dayOfMonth: number): MyDate {

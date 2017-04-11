@@ -10,6 +10,11 @@ export class WeekService {
   public reqWorkMinutes: number;
   public minutes: number;
   public extraMinutes: number;
+  public chartData = [
+    { data: [], label: '' },
+    { data: [], label: '' },
+  ];
+  public chartLabels = ['1', '2', '3'];
 
   public weekStartIndex = 0;
 
@@ -23,13 +28,31 @@ export class WeekService {
     this.minutes = 0;
     this.extraMinutes = 0;
     this.workdaysCount = this.workDays.length;
+    const chartMinutes = [];
+    const chartRequiredWorkMinutes = [];
+    const chartLabels = [];
+    let i = 1;
     for (const w of this.weeks) {
       for (const d of w.days) {
         this.reqWorkMinutes += d.requiredWorkMinutes;
         this.minutes += d.minutes;
         this.extraMinutes += d.extraMinutes;
+        if ((d.isSimpleDay() && !d.isWeekend()) || d.isWorkDay()) {
+          chartMinutes.push(d.minutes);
+          chartRequiredWorkMinutes.push(d.requiredWorkMinutes);
+          chartLabels.push(i + '');
+        }
+        if (!d.isEmptyDay()) {
+          i++;
+        }
       }
     }
+    this.chartLabels = chartLabels;
+    this.chartData = [];
+    this.chartData.push({ data: chartMinutes, label: 'Work minutes'});
+    this.chartData.push({ data: chartRequiredWorkMinutes, label: 'Required work minutes'});
+    console.log(this.chartData);
+    console.log(this.chartLabels);
   }
 
   public getDays(): MyDate[] {

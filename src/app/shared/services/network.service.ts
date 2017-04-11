@@ -30,7 +30,7 @@ export class NetworkService {
     private urlExistUser = this.urlBase + 'isExistUser';
 
     private urlGetMonths = this.urlBase + 'workmonths/';
-    // private urlDeleteAll = this.urlBase + 'workmonths/deleteall';
+    private urlDeleteAll = this.urlBase + 'workmonths/deleteall';
 
     private urlAddWorkDay = this.urlBase + 'workmonths/workdays';
     private urlAddWorkDayWeekend = this.urlBase + 'workmonths/workdaysweekend';
@@ -106,7 +106,7 @@ export class NetworkService {
       return this.http.put(this.urlDeleteTask, JSON.stringify(deleteTask), this.options);
     }
 
-    // public deleteAll(): Observable<Response> {
-    //     return this.http.put(this.urlDeleteAll, { }, this.options);
-    // }
+    public deleteAll(): Observable<Response> {
+        return this.http.put(this.urlDeleteAll, { }, this.options);
+    }
 }

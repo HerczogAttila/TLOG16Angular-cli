@@ -8,3 +8,13 @@
     {{weekService.extraMinutes}}
   </p>
 </div>
+<div class="chart">
+  <canvas baseChart width="400" height="60"
+          [datasets]="weekService.chartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType">
+  </canvas>
+</div>

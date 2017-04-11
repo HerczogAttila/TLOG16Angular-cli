@@ -27,13 +27,6 @@ export class MyDate {
     this.extraMinutes = extraMinutes;
   }
 
-  public makeWorkDay(workDay: WorkDay) {
-    this.type = DayType.Work;
-    this.requiredWorkMinutes = workDay.requiredMinPerDay;
-    this.extraMinutes = workDay.extraMinPerDay;
-    this.minutes = workDay.sumMinPerDay;
-  }
-
   public getYear(): number {
     return this.date.getFullYear();
   }
@@ -56,5 +49,9 @@ export class MyDate {
 
   public isWorkDay(): boolean {
     return this.type === DayType.Work;
+  }
+
+  public isEmptyDay(): boolean {
+    return this.type === DayType.Empty;
   }
 }

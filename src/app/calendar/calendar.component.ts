@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PagerService } from '../shared/services/pager.service';
-// import { NetworkService } from '../shared/services/network.service';
+import { NetworkService } from '../shared/services/network.service';
 import { WeekService } from '../shared/services/week.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     public weekService: WeekService,
-    // private networkService: NetworkService,
+    private networkService: NetworkService,
     private pagerService: PagerService,
   ) { }
 
@@ -22,8 +22,8 @@ export class CalendarComponent implements OnInit {
     this.pagerService.init();
   }
 
-  // public deleteAll(): void {
-  //   this.networkService.deleteAll()
-  //     .subscribe(() => this.pagerService.refresh());
-  // }
+  public deleteAll(): void {
+    this.networkService.deleteAll()
+      .subscribe(() => this.pagerService.refresh());
+  }
 }

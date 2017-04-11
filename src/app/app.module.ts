@@ -24,6 +24,7 @@ import { NetworkService } from './shared/services/network.service';
 import { PagerService } from './shared/services/pager.service';
 import { WeekService } from './shared/services/week.service';
 import { TranslateLoader, TranslateModule, TranslateStaticLoader } from 'ng2-translate';
+import { ChartsModule } from 'ng2-charts';
 
 export function translateFactory(http: Http): TranslateStaticLoader {
   return new TranslateStaticLoader(http, 'assets/translations', '.json');
@@ -61,7 +62,8 @@ export function translateFactory(http: Http): TranslateStaticLoader {
       provide: TranslateLoader,
       useFactory: translateFactory,
       deps: [Http]
-    })
+    }),
+    ChartsModule
   ],
   providers: [
     WeekService,
